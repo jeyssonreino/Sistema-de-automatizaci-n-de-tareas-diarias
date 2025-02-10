@@ -14,12 +14,12 @@ import javax.swing.JTextField;
 
 public class Display extends JFrame {
 	
-	JFrame ventana;
+	//JFrame ventana;
 	JButton btn1, btnConvertir, btnLimpiarRedmine;
 	Label lblMinutos, lblRedmine, lblTituloRedmine;
 	JLabel imgRedmine;
 	JMenu menu1;
-	JMenuItem opcion1, opcion2, opcion3;
+	JMenuItem opcion1, opcion2, opcion3, opcion4;
 	JMenuBar menubar;
 	JPanel panel1, panel2, panel3;
 	JTextField txtMinutos, txtMinutosConvertidos;
@@ -29,13 +29,13 @@ public class Display extends JFrame {
 	private boolean ventana2 = false;
     //
 	public Display() {
-		ventana = new JFrame();
 		btn1 = new JButton();
 		menubar = new JMenuBar();
 		menu1 = new JMenu();
 		opcion1 = new JMenuItem();
 		opcion2 = new JMenuItem();
 		opcion3 = new JMenuItem();
+		opcion4 = new JMenuItem();
 		panel1 = new JPanel();
 		panel2 = new JPanel();
 		panel3 = new JPanel();
@@ -49,47 +49,68 @@ public class Display extends JFrame {
 		iconRedmine = new ImageIcon(getClass().getResource("/logo_redmine.png"));
 		imgRedmine = new JLabel(iconRedmine);
 		Tabla tabla = new Tabla();
-
+		Arboles arboles = new Arboles();
 		//
-		ventana.setVisible(true);
-		ventana.setBounds(250, 100, 700, 400);
-		ventana.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		ventana.setTitle("Programas v2024");
-		ventana.setLayout(null);
-		ventana.setResizable(false);
-		ventana.setIconImage(new ImageIcon(getClass().getResource("/p.png")).getImage());
 		panel1.setVisible(false);
 		panel2.setVisible(false);
 		panel3.setVisible(false);
-		//
-		opcion1.setText("Abrir ventana");
-		opcion1.addActionListener(e -> {
-			panel1.setVisible(true);
-			panel2.setVisible(false);
-			panel3.setVisible(false);
-		});
-		opcion2.setText("Minutos Redmine");
-		opcion2.addActionListener(e -> {
-			panel1.setVisible(false);
-			panel2.setVisible(true);
-			panel3.setVisible(false);
-		});
-		opcion3.setText("Crear Tablas");
-		opcion3.addActionListener(e -> {	
-			tabla.setBounds(0, 0, 700, 400);
-			ventana.add(tabla);
-			panel1.setVisible(false);
-			panel2.setVisible(false);
-			tabla.setVisible(true);
-		});
+		tabla.setVisible(false);
+		arboles.setVisible(false);
 		menu1.setBounds(0, 0, 30, 30);
 		menu1.setText("Lista de programas");
 		menu1.add(opcion1);
 		menu1.add(opcion2);
 		menu1.add(opcion3);
+		menu1.add(opcion4);
 		menubar.add(menu1);
-		menubar.setBounds(0, 0, 700, 30);
-		ventana.setJMenuBar(menubar);
+		this.setJMenuBar(menubar);
+		this.setVisible(true);
+		this.setBounds(250, 100, 700, 400);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setTitle("Programas v2025");
+		//this.setLayout(null);
+		this.setResizable(false);
+		this.setIconImage(new ImageIcon(getClass().getResource("/p.png")).getImage());
+
+		//
+		opcion1.setText("Abrir ventana");
+		opcion1.addActionListener(e -> {
+			panel1.setVisible(true);
+			panel2.setVisible(false);
+			tabla.setVisible(false);
+			panel3.setVisible(false);
+			arboles.setVisible(false);
+
+		});
+		opcion2.setText("Minutos Redmine");
+		opcion2.addActionListener(e -> {
+			panel1.setVisible(false);
+			panel2.setVisible(true);
+			tabla.setVisible(false);
+			panel3.setVisible(false);
+			arboles.setVisible(false);
+
+		});
+		opcion3.setText("Crear Tablas");
+		opcion3.addActionListener(e -> {	
+			tabla.setBounds(0, 0, 700, 400);
+			this.add(tabla);
+			panel1.setVisible(false);
+			panel2.setVisible(false);
+			tabla.setVisible(true);
+			arboles.setVisible(false);
+
+		});
+		opcion4.setText("Tablas de bases de datos");
+		opcion4.addActionListener(e -> {
+			panel1.setVisible(false);
+			panel2.setVisible(false);
+			tabla.setVisible(false);
+			panel3.setVisible(false);
+			arboles.setBounds(0, 0, 700, 400);
+			this.add(arboles);
+			arboles.setVisible(true);
+		});
 		//
 		btn1.setBounds(250, 60, 200, 20);
 		btn1.setText("Abrir ventana 2");
@@ -101,7 +122,7 @@ public class Display extends JFrame {
 		panel1.setBackground(Color.BLUE);
 		panel1.setLayout(null);
 		panel1.add(btn1);
-		ventana.add(panel1);
+		this.add(panel1);
 		//label y textfield
 		lblMinutos.setText("Minutos:");
 		lblMinutos.setBounds(400, 90, 50, 30);
@@ -144,7 +165,7 @@ public class Display extends JFrame {
 		panel2.add(txtMinutosConvertidos);
 		panel2.add(btnLimpiarRedmine);
 		panel2.add(lblTituloRedmine);
-		ventana.add(panel2);
+		this.add(panel2);
 		//
 
 
